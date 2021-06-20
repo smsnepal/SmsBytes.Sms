@@ -1,0 +1,70 @@
+version: '3'
+services:
+  key_store:
+    image: fossapps/micro.keystore:1.9.1
+    ports:
+      - 15000:15000
+    environment:
+      - ASPNETCORE_URLS=http://+:15000
+      - DatabaseConfig__AutoMigrate=true
+      - DatabaseConfig__Host=postgres
+      - DatabaseConfig__Port=5432
+      - DatabaseConfig__Name=keys
+      - DatabaseConfig__User=postgres
+      - DatabaseConfig__Password=postgres
+    depends_on:
+      - postgres
+  auth:
+    image: fossapps/micro.auth:2.1.2
+    ports:
+      - 25000:25000
+    environment:
+      - ASPNETCORE_URLS=http://+:25000
+      - DatabaseConfig__AutoMigrate=true
+      - DatabaseConfig__Host=postgres
+      - DatabaseConfig__Port=5432
+      - DatabaseConfig__Name=auth
+      - DatabaseConfig__User=postgres
+      - DatabaseConfig__Password=postgres
+      - Services__KeyStore__Url=http://key_store:15000
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:11-alpine
+    ports:
+      - 15433:5432
+    volumes:
+      - ./extras/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+  influxdb:
+    image: influxdb
+    environment:
+      - INFLUXDB_ADMIN_USER=cyberhck
+      - INFLUXDB_ADMIN_PASSWORD=secret
+      - INFLUXDB_DB=monitoring
+    ports:
+      - 8086:8086 # http api
+      - 8083:8083 # admin interface
+
+  chronograf:
+    container_name: chronograf
+    image: chronograf
+    environment:
+      - influxdb-url=influxdb:8086
+    ports:
+      - 18888:8888
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,raintank-worldping-app,digrich-bubblechart-panel,corpglory-progresslist-panel,flant-statusmap-panel
+    ports:
+      - 3000:3000
+  adminer:
+      image: adminer
+      ports:
+        - 8081:8080
