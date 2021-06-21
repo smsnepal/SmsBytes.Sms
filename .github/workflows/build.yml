@@ -3,7 +3,7 @@ name: Build
 on: [push]
 
 env:
-  DOCKER_IMAGE_NAME: fossapps/micro.starter
+  DOCKER_IMAGE_NAME: smsbytes/sms.api
 jobs:
   build:
     runs-on: ubuntu-latest
