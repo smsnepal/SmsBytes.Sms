@@ -1,4 +1,4 @@
-const dockerImageName = 'fossapps/micro.starter'
+const dockerImageName = 'smsbytes/sms.api'
 
 class SemanticReleaseError extends Error {
     constructor(message, code, details) {
