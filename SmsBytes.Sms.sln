@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsBytes.Sms.Storage", "Sms
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsBytes.Sms.Common", "SmsBytes.Sms.Common\SmsBytes.Sms.Common.csproj", "{21EB1C0F-3AF3-475C-8667-1BF3B351DABA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsBytes.Sms.Sdk", "SmsBytes.Sms.Sdk\SmsBytes.Sms.Sdk.csproj", "{D2CE4A26-D9E2-4F78-AC94-0CCB820107D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{21EB1C0F-3AF3-475C-8667-1BF3B351DABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21EB1C0F-3AF3-475C-8667-1BF3B351DABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21EB1C0F-3AF3-475C-8667-1BF3B351DABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2CE4A26-D9E2-4F78-AC94-0CCB820107D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2CE4A26-D9E2-4F78-AC94-0CCB820107D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2CE4A26-D9E2-4F78-AC94-0CCB820107D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2CE4A26-D9E2-4F78-AC94-0CCB820107D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
